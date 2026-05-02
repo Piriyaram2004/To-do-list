@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskManager</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+<header class="head_container">
+        <h1>TaskManager📋</h1>
+        <nav>
+            <ul class="butn_container">
+                <li><button onclick="showAll()">ShowAll</button></li>
+                <li><button onclick="Pending()">Pending</button></li>
+                <li><button onclick="Completed()">Completed</button></li>
+                <li><button onclick="Theme()" id="bunt_toggle">🔆</button></li>
+            </ul>
+        </nav>
+</header>
+<main class="inputs_container">
+    <div class="container">
+        <input type="text" placeholder="Enter Your Task..." id="inputfield" class="inputfield_class">
+        <button onclick="add()" class="add_butn">Add</button>
+    </div>
+    <ul class="list_container"></ul>
+</main>
+<script src="../JS/script.js"></script>
+</body>
+</html>

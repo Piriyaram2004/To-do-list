@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* body{
+    background:linear-gradient(150deg,white,purple);
+} */
+.head_container{
+    display: flex;
+    justify-content: space-between;
+}
+.head_container h1{
+    padding: 10px;
+    font-size: 35px;
+}
+.head_container h1::first-letter{
+    color: red;
+    font-size: 70px;
+}
+.butn_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.butn_container li{
+list-style-type: none;
+padding: 15px;
+}
+.butn_container button{
+padding:5px;
+border-radius: 10px;
+}
+.butn_container li:nth-child(1) button:hover{
+    transition: all ease-in-out 0.1s;
+    transform: scale(1.1);
+    box-shadow: 2px 2px 12px rgb(130, 130, 130);
+padding:5px;
+background: linear-gradient(hsl(0, 0%, 30%),hsl(0, 0%, 40%),hsl(0, 0%, 50%));
+color:white ;
+border-radius: 10px;
+}
+.butn_container li:nth-child(2) button:hover{
+    transition: all ease-in-out 0.1s;
+    transform: scale(1.1);
+padding:5px;
+color: rgb(255, 253, 253);
+background: linear-gradient(135deg,hsl(0, 100%, 50%),hsl(0, 100%, 60%),hsl(0, 100%, 70%));
+border-radius: 10px;
+}
+.butn_container li:nth-child(3) button:hover{
+padding:5px;
+    transition: all ease-in-out 0.1s;
+    transform: scale(1.1);
+color: rgb(255, 255, 255);
+background: linear-gradient(hsl(120, 98%, 49%),hsl(120, 98%, 59%),hsl(120, 98%, 69%));
+border-radius: 10px;
+}
+.butn_container li:nth-child(4) button{
+border-radius:50%;
+}
+.inputs_container{
+    margin:50px auto;
+    text-align: center;
+    line-height: 100px;
+}
+.list_container{
+    margin: auto;
+    background-color: aliceblue;
+    width: 400px;
+    height: 500px;
+    border-radius: 30px;
+}
+.inputfield_class{
+padding: 5px;
+border-radius: 50px;
+font-size: 18px;
+box-shadow: 2px 2px 10px red;
+}
+.inputfield_class:hover{
+transform: scale(1.1);
+transition: all ease-in 0.1s;
+}
+.add_butn{
+    margin-left:20px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 40px;
+    box-shadow: 2px 2px 10px rgb(0, 255, 153);
+}
+.add_butn:hover{
+    background: linear-gradient(120deg,rgb(0, 0, 0),rgb(255, 255, 255),black);
+    margin-left:20px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 40px;
+    transition: all ease-in-out 0.2s;
+    transform: scale(1.1);
+}
