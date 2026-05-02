@@ -3,9 +3,10 @@
     margin: 0;
     box-sizing: border-box;
 }
-/* body{
-    background:linear-gradient(150deg,white,purple);
-} */
+body{
+    background:linear-gradient(150deg,white,purple) no-repeat;
+    min-height: 100vh;
+}
 .head_container{
     display: flex;
     justify-content: space-between;
@@ -96,6 +97,81 @@ transition: all ease-in 0.1s;
     transition: all ease-in-out 0.2s;
     transform: scale(1.1);
 }
-.q{
-    background-color: aqua;
+/* this is for js elements */
+.mark_butn{
+    margin-top:30px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid;
+}
+.delete_butn{
+    margin-top: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color:red;
+    color: white;
+    font-weight: bolder;
+}
+.mark_butn:hover{
+transform: scale(1.1);
+transition: all ease 0.1s;
+}
+.delete_butn:hover{
+background-color: hsl(0, 100%, 70%);
+transition: all ease-in-out 0.2s;
+}
+.Complete{
+    text-decoration: line-through;
+}
+.listelement{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: gray;
+    border: 2px solid ;
+    border-radius: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bolder;
+    height: 100px;
+}
+.listelement:hover{
+    background-color:lightgrey;
+    transition: all ease-in-out 0.5s;
+}
+.toggle{
+    background-color: greenyellow;
+    color: red;
+} 
+* { margin:0; padding:0; box-sizing:border-box; }
+/* body { font-family: Arial, sans-serif; background: #f4f4f4; } */
+
+.head_container { display:flex; justify-content:space-between; padding:10px; }
+.head_container h1 { font-size:28px; }
+.butn_container { display:flex; gap:10px; }
+.butn_container li { list-style:none; }
+.butn_container button { padding:6px 12px; border-radius:8px; cursor:pointer; }
+
+.inputs_container { margin:20px auto; text-align:center; }
+.inputfield_class { padding:8px; border-radius:20px; width:70%; max-width:300px; }
+.add_butn { margin-left:10px; padding:8px 16px; border-radius:20px; }
+
+#list_container { margin:20px auto; width:90%; max-width:400px; }
+
+.listelement { display:flex; justify-content:space-between; align-items:center;
+  background:#fff; border:1px solid #ccc; border-radius:10px; padding:10px; margin-bottom:10px; }
+.listelement li { flex:1; }
+.Complete { text-decoration:line-through; color:gray; }
+
+.mark_butn, .delete_butn { width:30px; height:30px; border-radius:50%; cursor:pointer; }
+.mark_butn { background:#eee; border:2px solid green; }
+.delete_butn { background:red; color:white; border:none; }
+
+@media (max-width:600px) {
+  .head_container { flex-direction:column; align-items:center; }
+  .butn_container { flex-wrap:wrap; justify-content:center; }
+  .listelement { flex-direction:column; align-items:flex-start; }
+  .mark_butn, .delete_butn { margin-top:5px; }
 }
