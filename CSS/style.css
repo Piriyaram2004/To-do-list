@@ -1,177 +1,188 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
-body{
-    background:linear-gradient(150deg,white,purple) no-repeat;
-    min-height: 100vh;
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+  transition:
+    background 0.5s,
+    color 0.5s;
 }
-.head_container{
-    display: flex;
-    justify-content: space-between;
+body.dark {
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  color: #fff;
 }
-.head_container h1{
-    padding: 10px;
-    font-size: 35px;
+.container {
+  width: 90%;
+  max-width: 500px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition:
+    background 0.5s,
+    color 0.5s;
+  max-height: 80vh;
+  overflow-y: auto;
 }
-.head_container h1::first-letter{
-    color: red;
-    font-size: 70px;
+body.dark .container {
+  background: #333;
+  color: #fff;
 }
-.butn_container{
-    display: flex;
-    justify-content: space-evenly;
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
 }
-.butn_container li{
-list-style-type: none;
-padding: 15px;
+h1::before {
+  content: "📝 ";
 }
-.butn_container button{
-padding:5px;
-border-radius: 10px;
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
-.butn_container li:nth-child(1) button:hover{
-    transition: all ease-in-out 0.1s;
-    transform: scale(1.1);
-    box-shadow: 2px 2px 12px rgb(130, 130, 130);
-padding:5px;
-background: linear-gradient(hsl(0, 0%, 30%),hsl(0, 0%, 40%),hsl(0, 0%, 50%));
-color:white ;
-border-radius: 10px;
+.input-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
-.butn_container li:nth-child(2) button:hover{
-    transition: all ease-in-out 0.1s;
-    transform: scale(1.1);
-padding:5px;
-color: rgb(255, 253, 253);
-background: linear-gradient(135deg,hsl(0, 100%, 50%),hsl(0, 100%, 60%),hsl(0, 100%, 70%));
-border-radius: 10px;
+.input-group button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background: #f8b500;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
-.butn_container li:nth-child(3) button:hover{
-padding:5px;
-    transition: all ease-in-out 0.1s;
-    transform: scale(1.1);
-color: rgb(255, 255, 255);
-background: linear-gradient(hsl(120, 98%, 49%),hsl(120, 98%, 59%),hsl(120, 98%, 69%));
-border-radius: 10px;
+.input-group button:hover {
+  background: #e0a800;
+  transform: scale(1.05);
+} /* Filter & Theme buttons in one row */
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
 }
-.butn_container li:nth-child(4) button{
-border-radius:50%;
+.controls button {
+  padding: 8px 12px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #eee;
+  transition:
+    border-color 0.3s,
+    transform 0.2s;
+} /* Hover outline colors */
+.showall-btn:hover {
+  border-color: #007bff;
+  transform: scale(1.05);
+} /* Blue outline */
+.pending-btn:hover {
+  border-color: red;
+  transform: scale(1.05);
+} /* Red outline */
+.completed-btn:hover {
+  border-color: green;
+  transform: scale(1.05);
+} /* Green outline */
+.theme-btn:hover {
+  border-color: orange;
+  transform: scale(1.05);
+} /* Orange outline */
+.task-list {
+  list-style: none;
+  padding: 0;
 }
-.inputs_container{
-    margin:50px auto;
-    text-align: center;
-    line-height: 100px;
+.task-item {
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s forwards;
+  transition:
+    box-shadow 0.3s,
+    transform 0.3s;
 }
-.list_container{
-    margin: auto;
-    background-color: aliceblue;
-    width: 400px;
-    height: 500px;
-    border-radius: 30px;
+.task-item:hover {
+  box-shadow: 0 0 12px rgba(248, 181, 0, 0.6);
+  transform: scale(1.02);
 }
-.inputfield_class{
-padding: 5px;
-border-radius: 50px;
-font-size: 18px;
-box-shadow: 2px 2px 10px red;
+body.dark .task-item {
+  background: #444;
 }
-.inputfield_class:hover{
-transform: scale(1.1);
-transition: all ease-in 0.1s;
+body.dark .task-item:hover {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
 }
-.add_butn{
-    margin-left:20px;
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 40px;
-    box-shadow: 2px 2px 10px rgb(0, 255, 153);
+.task-text {
+  flex: 1;
+  word-break: break-word;
+  margin-bottom: 5px;
 }
-.add_butn:hover{
-    background: linear-gradient(120deg,rgb(0, 0, 0),rgb(255, 255, 255),black);
-    margin-left:20px;
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 40px;
-    transition: all ease-in-out 0.2s;
-    transform: scale(1.1);
+.task-meta {
+  font-size: 0.8em;
+  color: #666;
 }
-/* this is for js elements */
-.mark_butn{
-    margin-top:30px;
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    border-radius: 50%;
-    border: 2px solid;
+body.dark .task-meta {
+  color: #ccc;
 }
-.delete_butn{
-    margin-top: 30px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color:red;
-    color: white;
-    font-weight: bolder;
+.task-actions {
+  display: flex;
+  justify-content: flex-end;
 }
-.mark_butn:hover{
-transform: scale(1.1);
-transition: all ease 0.1s;
+.task-actions button {
+  margin-left: 5px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
-.delete_butn:hover{
-background-color: hsl(0, 100%, 70%);
-transition: all ease-in-out 0.2s;
+.task-actions button:hover {
+  background: #ccc;
+  transform: scale(1.1);
 }
-.Complete{
-    text-decoration: line-through;
+.completed {
+  text-decoration: line-through;
+  color: gray;
 }
-.listelement{
-    display: flex;
-    justify-content: space-evenly;
-    background-color: gray;
-    border: 2px solid ;
-    border-radius: 10px;
-    color: black;
-    font-size: 20px;
-    font-weight: bolder;
-    height: 100px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.listelement:hover{
-    background-color:lightgrey;
-    transition: all ease-in-out 0.5s;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
 }
-.toggle{
-    background-color: greenyellow;
-    color: red;
-} 
-* { margin:0; padding:0; box-sizing:border-box; }
-/* body { font-family: Arial, sans-serif; background: #f4f4f4; } */
-
-.head_container { display:flex; justify-content:space-between; padding:10px; }
-.head_container h1 { font-size:28px; }
-.butn_container { display:flex; gap:10px; }
-.butn_container li { list-style:none; }
-.butn_container button { padding:6px 12px; border-radius:8px; cursor:pointer; }
-
-.inputs_container { margin:20px auto; text-align:center; }
-.inputfield_class { padding:8px; border-radius:20px; width:70%; max-width:300px; }
-.add_butn { margin-left:10px; padding:8px 16px; border-radius:20px; }
-
-#list_container { margin:20px auto; width:90%; max-width:400px; }
-
-.listelement { display:flex; justify-content:space-between; align-items:center;
-  background:#fff; border:1px solid #ccc; border-radius:10px; padding:10px; margin-bottom:10px; }
-.listelement li { flex:1; }
-.Complete { text-decoration:line-through; color:gray; }
-
-.mark_butn, .delete_butn { width:30px; height:30px; border-radius:50%; cursor:pointer; }
-.mark_butn { background:#eee; border:2px solid green; }
-.delete_butn { background:red; color:white; border:none; }
-
-@media (max-width:600px) {
-  .head_container { flex-direction:column; align-items:center; }
-  .butn_container { flex-wrap:wrap; justify-content:center; }
-  .listelement { flex-direction:column; align-items:flex-start; }
-  .mark_butn, .delete_butn { margin-top:5px; }
+.fade-out {
+  animation: fadeOut 0.4s forwards;
 }

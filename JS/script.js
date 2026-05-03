@@ -1,113 +1,95 @@
-// let ul_listcontainer = document.getElementById("list_container");    
-// let inputfield = document.getElementById("inputfield");    
-// let taskarr = [];    
-
-// function addTask(){
-//     let textinput = inputfield.value.trim(); 
-//     if (textinput === "") return;
-
-//     let tasklist = { task: textinput, status: "Incomplete" };
-//     taskarr.push(tasklist);
-
-//     renderTasks();
-//     inputfield.value = ""; 
-// }
-
-// function renderTasks() {
-//     ul_listcontainer.innerHTML = ""; // clear before re-render
-
-//     taskarr.forEach((arrtask, index) => {
-//         const newdiv = document.createElement("div");
-//         newdiv.className = "listelement";
-
-//         newdiv.innerHTML = `
-//             <li class="${arrtask.status === "Complete" ? "Complete" : ""}">
-//                 <span class="listSpan">${arrtask.task}</span>
-//             </li>
-//             <button class="mark_butn" onclick="togglebutn(${index})">✔</button>
-//             <button class="delete_butn" onclick="deletebutn(${index}) id="toggle"">X</button>
-//         `;
-
-//         ul_listcontainer.appendChild(newdiv);
-//     });
-// }
-
-// function togglebutn(index){
-//     taskarr[index].status = taskarr[index].status === "Incomplete" ? "Complete" : "Incomplete";
-    
-//     renderTasks();
-// }
-
-// function deletebutn(index) {
-//     taskarr.splice(index, 1); // remove only that task
-//     renderTasks();
-// }
-let ul_listcontainer = document.getElementById("list_container");
-let inputfield = document.getElementById("inputfield");
-let taskarr = JSON.parse(localStorage.getItem("tasks")) || [];
-
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let currentFilter = "all";
 function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(taskarr));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-
+function renderTasks() {
+  const list = document.getElementById("taskList");
+  list.innerHTML = "";
+  tasks
+    .filter((task) => {
+      if (currentFilter === "all") return true;
+      return task.status === currentFilter;
+    })
+    .forEach((task, index) => {
+      const li = document.createElement("li");
+      li.className = "task-item";
+      const span = document.createElement("div");
+      span.className = "task-text";
+      span.textContent = task.name;
+      if (task.status === "completed") span.classList.add("completed");
+      li.appendChild(span);
+      if (task.datetime) {
+        const meta = document.createElement("div");
+        meta.className = "task-meta";
+        meta.textContent = "⏰ " + task.datetime;
+        li.appendChild(meta);
+      }
+      const actions = document.createElement("div");
+      actions.className = "task-actions";
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Edit";
+      editBtn.onclick = () => editTask(index);
+      const completeBtn = document.createElement("button");
+      completeBtn.textContent = "✔";
+      completeBtn.onclick = () => toggleStatus(index);
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "🗑";
+      deleteBtn.onclick = () => deleteTask(index, li);
+      actions.appendChild(editBtn);
+      actions.appendChild(completeBtn);
+      actions.appendChild(deleteBtn);
+      li.appendChild(actions);
+      list.appendChild(li);
+    });
+}
 function addTask() {
-  let textinput = inputfield.value.trim();
-  if (textinput === "") return;
-
-  let tasklist = { task: textinput, status: "Incomplete" };
-  taskarr.push(tasklist);
-  saveTasks();
-  renderTasks();
-  inputfield.value = "";
-}
-
-function renderTasks(filter = "all") {
-  ul_listcontainer.innerHTML = "";
-  taskarr.forEach((arrtask, index) => {
-    if (filter === "all" || arrtask.status.toLowerCase() === filter) {
-      const newdiv = document.createElement("div");
-      newdiv.className = "listelement";
-
-      newdiv.innerHTML = `
-        <li class="${arrtask.status === "Complete" ? "Complete" : ""}">
-          <span>${arrtask.task}</span>
-        </li>
-        <div class="btn_group">
-          <button class="mark_butn" onclick="togglebutn(${index})">✔</button>
-          <button class="edit_butn" onclick="editTask(${index})">✎</button>
-          <button class="delete_butn" onclick="deletebutn(${index})">X</button>
-        </div>
-      `;
-      ul_listcontainer.appendChild(newdiv);
-    }
-  });
-}
-
-function togglebutn(index) {
-  taskarr[index].status = taskarr[index].status === "Incomplete" ? "Complete" : "Incomplete";
+  const input = document.getElementById("taskInput");
+  const dateTime = document.getElementById("taskDateTime").value;
+  const name = input.value.trim();
+  if (name === "") return;
+  tasks.push({ name, status: "pending", datetime: dateTime });
+  input.value = "";
+  document.getElementById("taskDateTime").value = "";
   saveTasks();
   renderTasks();
 }
-
-function deletebutn(index) {
-  taskarr.splice(index, 1);
+function toggleStatus(index) {
+  tasks[index].status =
+    tasks[index].status === "pending" ? "completed" : "pending";
   saveTasks();
   renderTasks();
 }
-
-function editTask(index) {
-  let newText = prompt("Edit your task:", taskarr[index].task);
-  if (newText !== null && newText.trim() !== "") {
-    taskarr[index].task = newText.trim();
+function deleteTask(index, element) {
+  element.classList.add("fade-out");
+  setTimeout(() => {
+    tasks.splice(index, 1);
     saveTasks();
     renderTasks();
-  }
+  }, 400);
 }
-
-// Filters
-function showAll() { renderTasks("all"); }
-function showPending() { renderTasks("incomplete"); }
-function showCompleted() { renderTasks("complete"); }
-
-// Initial render
+function editTask(index) {
+  const newName = prompt("Edit task name:", tasks[index].name);
+  const newDateTime = prompt(
+    "Edit date/time (YYYY-MM-DDTHH:MM):",
+    tasks[index].datetime || "",
+  );
+  if (newName !== null && newName.trim() !== "") {
+    tasks[index].name = newName.trim();
+  }
+  if (newDateTime !== null && newDateTime.trim() !== "") {
+    tasks[index].datetime = newDateTime.trim();
+  }
+  saveTasks();
+  renderTasks();
+}
+function filterTasks(type) {
+  currentFilter = type;
+  renderTasks();
+}
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  const btn = document.getElementById("themeBtn");
+  btn.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
+}
 renderTasks();
