@@ -50,56 +50,78 @@ h1::before {
 .input-group input {
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-bottom: 10px;
 }
 .input-group button {
   padding: 10px 15px;
   border: none;
-  border-radius: 5px;
-  background: #f8b500;
-  color: #fff;
+  border-radius: 15px;
+  background: #b6b3b3; 
+  color: #0e0e0e;
+  font-weight: bolder;
   cursor: pointer;
   transition:
     background 0.3s,
     transform 0.2s;
 }
 .input-group button:hover {
-  background: #e0a800;
+  background: hwb(0 70% 49%);
   transform: scale(1.05);
 } /* Filter & Theme buttons in one row */
 .controls {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 30px;
   margin: 10px 0;
 }
 .controls button {
   padding: 8px 12px;
   border: 2px solid transparent;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
-  background: #eee;
+  font-weight: bolder;
   transition:
     border-color 0.3s,
     transform 0.2s;
 } /* Hover outline colors */
+.showall-btn{
+  background-color: blue;
+  color: white;
+}
 .showall-btn:hover {
-  border-color: #007bff;
-  transform: scale(1.05);
+  border-color: rgb(1, 1, 1);
+background: linear-gradient(hsl(240, 100%, 60%),hsl(240, 100%, 70%),hsl(240, 100%, 80%));
+  transform: scale(1.1);
 } /* Blue outline */
+.pending-btn{
+background-color: red;
+color: white;
+}
 .pending-btn:hover {
-  border-color: red;
-  transform: scale(1.05);
+  border-color: rgb(1, 1, 1);
+background: linear-gradient(120deg,hsl(0, 100%, 50%),hsl(0, 100%, 60%),hsl(0, 100%, 70%));
+ color: rgb(0, 0, 0);
+  transform: scale(1.1);
 } /* Red outline */
+.completed-btn{
+  background-color: rgb(5, 188, 5);
+  color: white;
+}
 .completed-btn:hover {
-  border-color: green;
-  transform: scale(1.05);
+  border-color: rgb(1, 1, 1);
+background: linear-gradient(hsl(120, 100%, 45%),hsl(120, 100%, 55%),hsl(120, 100%, 65%));
+color: black;
+transform: scale(1.1);
 } /* Green outline */
+.theme-btn{
+  background-color:black;
+}
 .theme-btn:hover {
-  border-color: orange;
-  transform: scale(1.05);
+border-color: rgb(1, 1, 1);
+background: linear-gradient(120deg,black,white);
+  transform: scale(1.1);
 } /* Orange outline */
 .task-list {
   list-style: none;
