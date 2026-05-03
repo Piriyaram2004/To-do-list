@@ -9,7 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #fceabb, #f8b500);
+  background: linear-gradient(35deg,#08e045, #fcbbed, #f8b500);
   transition:
     background 0.5s,
     color 0.5s;
