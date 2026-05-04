@@ -62,7 +62,7 @@ h1::before {
   font-weight: bolder;
   cursor: pointer;
   transition:
-    background 0.3s,
+    0.3s,
     transform 0.2s;
 }
 .input-group button:hover {
@@ -174,7 +174,7 @@ body.dark .task-meta {
   border-radius: 5px;
   cursor: pointer;
   transition:
-    background 0.3s,
+    0.3s,
     transform 0.2s;
 }
 .task-actions button:hover {
